@@ -1,7 +1,13 @@
+const node1 = {
+    previous: null,
+    next: null,
+    data: "C"
+};
+
 export default class DoublyLinkedList {
     constructor() {
-        this.head = null;
-        this.tail = null;
+        this.head = node1;
+        this.tail = node1;
         this.length = 0;
     }
 
