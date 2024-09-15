@@ -211,6 +211,142 @@ export default class DoublyLinkedList {
         } else return;
     }
 
+    addNodeLast(newNode) {
+        if (!this.tail) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode;;
+        }
+    }
+
+    addNodeFirst(newNode) {
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+    }
+
+    insertAfterNode(newNodeData, existingNode) {
+        if (!existingNode) return;
+
+        let indexToInsertAfter = this.indexOf(existingNode.data);
+
+        if (indexToInsertAfter === -1) return;
+
+        this.insertAfter(indexToInsertAfter, newNodeData);
+    }
+
+    insertBeforeNode(newNodeData, existingNode) {
+        if (!existingNode) return;
+
+        let indexToInsertBefore = this.indexOf(existingNode.data);
+
+        if (indexToInsertBefore === -1) return;
+
+        this.insertBefore(indexToInsertBefore, newNodeData);
+    }
+
+    removeNode(existingNode) {
+        if (!existingNode) return;
+
+        if (existingNode === this.head) {
+            this.head = existingNode.next;
+            if (this.head) {
+                this.head.prev = null;
+            } else {
+                this.tail = null;
+            }
+        } else {
+            if (existingNode.prev) {
+                existingNode.prev.next = existingNode.next;
+            }
+
+            if (existingNode.next) {
+                existingNode.next.prev = existingNode.prev;
+            } else {
+                this.tail = existingNode.prev;
+            }
+        }
+
+        this.length--;
+    }
+
+    nodeAt(index) {
+        if (index < 0 || index >= this.length) return null;
+
+        let current = this.head;
+        for (let i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        return current;
+    }
+
+    swapNodes(nodeA, nodeB) {
+        if (nodeA === nodeB || !nodeA || !nodeB) return;
+
+        if (!this.head || !this.tail) return;
+
+        function swap(a, b) {
+            if (a.prev) a.prev.next = b;
+            if (b.next) b.next.prev = a;
+            if (b.prev) b.prev.next = a;
+            if (a.next) a.next.prev = b;
+        };
+
+        const isHeadA = nodeA === this.head;
+        const isTailA = nodeA === this.tail;
+        const isHeadB = nodeB === this.head;
+        const isTailB = nodeB === this.tail;
+
+        if (isHeadA) {
+            this.head = nodeB;
+        } else if (isHeadB) {
+            this.head = nodeA;
+        }
+
+        if (isTailA) {
+            this.tail = nodeB;
+        } else if (isTailB) {
+            this.tail = nodeA;
+        }
+
+        swap(nodeA, nodeB);
+
+        const tempNext = nodeA.next;
+        const tempPrev = nodeA.prev;
+
+        nodeA.next = nodeB.next;
+        nodeA.prev = nodeB.prev;
+
+        nodeB.next = tempNext;
+        nodeB.prev = tempPrev;
+
+        if (nodeA.next) nodeA.next.prev = nodeA;
+        if (nodeB.next) nodeB.next.prev = nodeB;
+
+        if (nodeA.prev) nodeA.prev.next = nodeA;
+        if (nodeB.prev) nodeB.prev.next = nodeB;
+    }
+
+
+    clear() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+
+    size() {
+        return this.length;
+    }
+
 
 }
 
