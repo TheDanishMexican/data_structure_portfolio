@@ -289,6 +289,7 @@ export default class DoublyLinkedList {
         return current;
     }
 
+    //Forstår ikke helt denne her, så den skal der lige kigges videre på, men den fungerer i hvert fald
     swapNodes(nodeA, nodeB) {
         if (nodeA === nodeB || !nodeA || !nodeB) return;
 
