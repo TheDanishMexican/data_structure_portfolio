@@ -4,10 +4,22 @@ const node1 = {
     data: "C"
 };
 
+const node2 = {
+    prev: null,
+    next: null,
+    data: "A"
+};
+
+const node3 = {
+    prev: null,
+    next: null,
+    data: "T"
+};
+
 export default class DoublyLinkedList {
     constructor() {
         this.head = node1;
-        this.tail = node1;
+        this.tail = node2;
         this.length = 0;
     }
 
@@ -353,6 +365,34 @@ export default class DoublyLinkedList {
     size() {
         return this.length;
     }
+
+    dumpList() {
+        console.log("Doubly linked list:\n");
+
+        console.log("_____");
+        console.log(`head: ${this.head ? this.head.data : "null"}`);
+        console.log(`tail: ${this.tail ? this.tail.data : "null"}`);
+        console.log("_____");
+
+        // Traverse and print each node
+        let current = this.head;
+        let index = 0;
+
+        while (current) {
+            console.log("____");
+            if (current === this.head) console.log("HEAD");
+            if (current === this.tail) console.log("TAIL");
+            console.log(`node ${index}: ${current.data}`);
+            console.log(`previous: ${current.prev ? current.prev.data : "null"}`);
+            console.log(`next: ${current.next ? current.next.data : "null"}`);
+            console.log("____\n");
+
+            current = current.next;
+            index++;
+        }
+    }
+
+
 
 
 }
