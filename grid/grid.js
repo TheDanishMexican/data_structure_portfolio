@@ -1,4 +1,4 @@
-class Grid {
+export default class Grid {
     constructor(rows, columns) {
         this.rows = rows;
         this.columns = columns;
@@ -180,7 +180,3 @@ class Grid {
 
 
 }
-
-const myGrid = new Grid(5, 5);
-
-window.myGrid = myGrid;
