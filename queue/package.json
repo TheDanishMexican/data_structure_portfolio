@@ -1,0 +1,22 @@
+{
+    "name": "queue",
+    "version": "1.0.0",
+    "description": "",
+    "main": "queue.js",
+    "type": "module",
+    "scripts": {
+        "test": "jest"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.25.2",
+        "@babel/preset-env": "^7.25.4",
+        "babel-jest": "^29.7.0"
+    },
+    "jest": {
+        "transform": {
+            "^.+\\.js$": "babel-jest"
+        }
+    }
+}
