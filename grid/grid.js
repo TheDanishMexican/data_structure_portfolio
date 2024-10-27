@@ -177,6 +177,4 @@ export default class Grid {
         this.grid = Array.from({ length: this.rows }, () => Array(this.columns).fill(value));
     }
 
-
-
 }
