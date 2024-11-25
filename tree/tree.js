@@ -79,4 +79,4 @@ const child2 = new Node("child2");
 rootNode.appendChild(child1);
 rootNode.appendChild(child2);
 
-const rootTree = new Tree(rootNode);
+const myTree = new Tree(rootNode);
