@@ -1,4 +1,4 @@
-class Tree {
+export class Tree {
     constructor(root) {
         this.root = root;
     }
@@ -7,9 +7,67 @@ class Tree {
         console.log(this);
     }
 
+    addValue(value) {
+        const newNode = new Node(value);
+
+        if (!this.root) {
+            this.root = newNode;
+        }
+
+        this.root.appendChild(newNode);
+    }
+
+    //Lav denne færdig og forstå
+
+    findValue(value) {
+        if (this.root.value == value) {
+            return root;
+        }
+
+        for (const childNode of this.root.childNodes) {
+            const foundNode = this.search(childNode, value);
+            if (foundNode) {
+                return foundNode;
+            }
+        }
+
+        //Hvis value ikke findes i vores tree
+        return null;
+    }
+
+    search(childNode, value) {
+        if (childNode.value == value) {
+            return childNode;
+        } else {
+            for (const grandChildNode of childNode.childNodes) {
+                const foundNode = this.search(grandChildNode, value);
+                //lag 3 - rekursiv 1
+                if (foundNode) return foundNode;
+            }
+        }
+
+        return null;
+    }
+
+    //Lav denne færdig og forstå
+
+    removeValue(value) {
+        const nodeWithValue = this.findValue(value);
+        if (nodeWithValue) {
+            const parent = nodeWithValue.parent;
+            parent.removeChild(nodeWithValue);
+            return parent;
+        }
+
+        else return null;
+    }
+
 }
 
-class Node {
+
+
+
+export class Node {
     constructor(value) {
         this.value = value;
         this.parent = null;
@@ -72,11 +130,5 @@ class Node {
     }
 }
 
-const rootNode = new Node("root");
-const child1 = new Node("child1");
-const child2 = new Node("child2");
 
-rootNode.appendChild(child1);
-rootNode.appendChild(child2);
 
-const myTree = new Tree(rootNode);
